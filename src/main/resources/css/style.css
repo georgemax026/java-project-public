@@ -1,0 +1,16 @@
+.choice-box {
+    -fx-background-color: #333;
+}
+
+.choice-box > .label {
+    -fx-text-fill: white;  /* fixes the selected text being invisible */
+}
+.button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}

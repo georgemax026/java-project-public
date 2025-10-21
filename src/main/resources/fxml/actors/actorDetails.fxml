@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="356.0" style="-fx-background-color: #1a1a1a; -fx-padding: 20;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.myApp.controllers.actors.ActorDetailsController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="121.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="428.0" minWidth="10.0" prefWidth="240.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="16.0" prefWidth="181.0" style="-fx-text-fill: #aaa;" text="Full name:" />
+      <Label fx:id="nameLabel" prefHeight="16.0" prefWidth="285.0" style="-fx-text-fill: white;" text="john doe" GridPane.columnIndex="1" />
+      <Label prefHeight="16.0" prefWidth="181.0" style="-fx-text-fill: #aaa;" text="Gender:" GridPane.rowIndex="2" />
+      <Label prefHeight="16.0" prefWidth="181.0" style="-fx-text-fill: #aaa;" text="Date of birth:" GridPane.rowIndex="1" />
+      <Label prefHeight="16.0" prefWidth="181.0" style="-fx-text-fill: #aaa;" text="Race:" GridPane.rowIndex="3" />
+      <Label fx:id="raceLabel" prefHeight="16.0" prefWidth="285.0" style="-fx-text-fill: white;" text="caucasiod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="genderLabel" prefHeight="16.0" prefWidth="285.0" style="-fx-text-fill: white;" text="male" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="birthDateLabel" prefHeight="16.0" prefWidth="285.0" style="-fx-text-fill: white;" text="1/1/1999" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   </children>
+</GridPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="gridPane" hgap="20" prefHeight="243.0" prefWidth="336.0" style="-fx-background-color: #1a1a1a; -fx-padding: 20;" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.myApp.controllers.series.EpisodeDetailsController">
+
+<Label prefHeight="17.0" prefWidth="75.0" style="-fx-text-fill: #aaa;" text="Series Title:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+<Label fx:id="titleLabel" style="-fx-text-fill: white;" text="title" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+<Label style="-fx-text-fill: #aaa;" text="Season:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+<Label fx:id="seasonLabel" style="-fx-text-fill: white;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+<Label style="-fx-text-fill: #aaa;" text="Director:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+<Label fx:id="directorLabel" style="-fx-text-fill: white;" text="Jane Doe" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+<Label style="-fx-text-fill: #aaa;" text="Staring" GridPane.rowIndex="5" />
+<Label fx:id="protagonistLabel" prefHeight="17.0" prefWidth="185.0" style="-fx-text-fill: #ddd; -fx-max-width: 400;" text="lead actor" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+<Label style="-fx-text-fill: #aaa;" text="IMDb Rating:" GridPane.rowIndex="6" />
+<Label fx:id="ratingLabel" style="-fx-text-fill: white;" text="8.4/10" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   <Label style="-fx-text-fill: #aaa;" text="Duration:" GridPane.rowIndex="7" />
+   <Label fx:id="durationLabel" style="-fx-text-fill: white;" text="1h 20m" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

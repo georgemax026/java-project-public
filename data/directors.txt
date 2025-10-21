@@ -1,0 +1,21 @@
+1,Quentin,Tarantino,1963-03-27,M,Pulp Fiction|Kill Bill|Django Unchained
+2,Christopher,Nolan,1970-07-30,M,Inception|Interstellar|The Dark Knight
+3,Steven,Spielberg,1946-12-18,M,Schindler's List|E.T.|Jurassic Park
+4,Greta,Gerwig,1983-08-04,F,Lady Bird|Little Women|Barbie
+5,David,Fincher,1962-08-28,M,Fight Club|Gone Girl|Mindhunter|House of Cards
+6,Cary,Joji Fukunaga,1977-07-10,M,No Time to Die|True Detective
+7,Ben,Stiller,1965-11-30,M,Severance|Zoolander|The Secret Life of Walter Mitty
+8,Aoife,McArdle,1978-05-01,F,Severance
+9,Joseph,Kosinski,1974-05-03,M,Tron: Legacy|Oblivion|Top Gun: Maverick
+10,Jame,Mangold,1963-12-16,M,Walk the line|Logan|Ford v Ferrari
+11,Ron,Howard,1954-03-01,M,A Beautiful Mind|Apollo 13|The Da Vinci Code
+12,Frank,Darabont,1959-01-28,M,The Shawshank Redemption
+13,Jon,Watts,1981-06-28,M,Spider-Man: No Way Home|Spider-Man: Homecoming|Spider-Man: Far From Home
+14,Doug,Liman,1965-07-24,M,Edge of Tomorrow
+15,Brett,Ratner,1969-03-28,M,Rush Hour
+16,Rian,Johnson,1973-12-17,M,Knives Out|Glass Onion
+17,Vince,Gilligan,1967-02-10,M,Breaking Bad
+18,Scott,Frank,1960-03-10,M,The Queen's Gambit
+19,Matt,Duffer,1984-02-15,M,Stranger Things
+20,Antoine,Fuqua,1965-05-30,M,The Equalizer|myMovie2
+21,joshya,weissman,1999-01-01,M,Spider-Man: Homecoming|Severance|Rush Hour

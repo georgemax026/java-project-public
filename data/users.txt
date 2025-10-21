@@ -1,0 +1,11 @@
+1,Σωτήρης,Χριστοδούλου,sxristod,sxristod@uop.gr
+2,Νικόλαος,Νικολάου,niknik,n.nikolaou@gmail.com
+3,Jane,Smith,jsmith,jane.smith@email.com
+4,Alice,Johnson,ajohnson,alice.j@email.com
+5,Sarah,Miller,s_miller88,sarah.miller88@example.com
+6,Alex,Jackson,ajackson07,ajackson07@example.com
+7,Kevin,Wu,k_wu23,kevin.wu23@example.com
+8,Singh,Deepak,d_singh77,deepak.singh77@example.com
+9,Chloe,Nguyen,mroberts05,mroberts05@example.com
+10,Jane,doe,janeDoe33,janedoe33@anonymous.org
+11,John,Doe,jdoe1633,jdoe1633@email.com

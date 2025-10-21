@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1226.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.myApp.controllers.RegisterUserController">
+    <stylesheets>
+        <URL value="@/main/resources/css/style.css" />
+    </stylesheets>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="553.0" minWidth="10.0" prefWidth="161.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1065.0" minWidth="10.0" prefWidth="1065.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="113.0" minHeight="8.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="196.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="522.0" minHeight="0.0" prefHeight="515.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="69.0" valignment="CENTER" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="66.0" prefWidth="186.0" style="-fx-text-fill: white; -fx-font-size: 15; -fx-padding: 20;" text="First Name:" GridPane.rowIndex="1" />
+      <TextField fx:id="firstNameTextField" maxWidth="200.0" prefWidth="50.0" promptText="John" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label prefHeight="66.0" prefWidth="186.0" style="-fx-text-fill: white; -fx-font-size: 15; -fx-padding: 20;" text="Last Name:" GridPane.rowIndex="2" />
+      <TextField fx:id="lastNameTextField" maxWidth="200.0" prefWidth="50.0" promptText="Doe" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label prefHeight="66.0" prefWidth="186.0" style="-fx-text-fill: white; -fx-font-size: 15; -fx-padding: 20;" text="Username:" GridPane.rowIndex="3" />
+      <TextField fx:id="usernameTextField" maxWidth="200.0" prefWidth="50.0" promptText="JohnDoe1633" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label prefHeight="66.0" prefWidth="186.0" style="-fx-text-fill: white; -fx-font-size: 15; -fx-padding: 20;" text="Email:" GridPane.rowIndex="4" />
+      <TextField fx:id="emailTextField" maxWidth="200.0" prefWidth="50.0" promptText="example@email.com" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#registerUser" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin>
+      </Button>
+      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onBack" text="← Back">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Button>
+   </children>
+</GridPane>

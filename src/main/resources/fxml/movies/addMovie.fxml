@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="496.0" style="-fx-background-color: #1a1a1a; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.myApp.controllers.movies.AddMovieController">
+    <stylesheets>
+        <URL value="@/main/resources/css/style.css" />
+    </stylesheets>
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="185.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="375.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Title:" />
+        <TextField fx:id="titleTextField" maxWidth="180.0" promptText="The movie: part II" GridPane.columnIndex="1" />
+        <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Release Year" GridPane.rowIndex="1" />
+      <Spinner fx:id="releaseYearSpinner" editable="true" maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Length (min):" GridPane.rowIndex="2" />
+      <Spinner fx:id="movieDurationSpinner" editable="true" maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Genre:" GridPane.rowIndex="3" />
+        <ChoiceBox fx:id="genreChoiceBox" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Director:" GridPane.rowIndex="4" />
+        <ChoiceBox fx:id="directorChoiceBox" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Starring:" GridPane.rowIndex="5" />
+      <ChoiceBox fx:id="protagonistChoiceBox" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="IMDb rating:" GridPane.rowIndex="6" />
+      <Spinner fx:id="imdbRatingSpinner" maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label prefHeight="44.0" prefWidth="185.0" style="-fx-text-fill: white; -fx-font-size: 15;" text="Poster:" GridPane.rowIndex="7" />
+      <Button fx:id="uploadPictureButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onUploadPoster" text="Search files" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#addMovie" text="Confirm" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+            <GridPane.margin>
+                <Insets right="20.0" />
+            </GridPane.margin>
+        </Button>
+    </children>
+</GridPane>

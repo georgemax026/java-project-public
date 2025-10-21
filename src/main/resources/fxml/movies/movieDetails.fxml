@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane" prefHeight="900.0" prefWidth="1226.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.myApp.controllers.movies.MovieDetailsController">
+    <stylesheets>
+        <URL value="@/main/resources/css/style.css" />
+    </stylesheets>
+
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #111; -fx-padding: 10;">
+            <Button onAction="#onBack" text="← Back" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="currentUserLabel" style="-fx-text-fill: #ccc;" text="User: Guest" />
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #1a1a1a; -fx-background: #1a1a1a;">
+            <content>
+                <VBox minHeight="0" spacing="18" style="-fx-padding: 24; -fx-background-color: #1a1a1a;" VBox.vgrow="ALWAYS">
+
+                    <VBox spacing="6">
+                        <Label fx:id="movieTitleLabel" style="-fx-text-fill: white; -fx-font-size: 36; -fx-font-weight: 600;" text="Movie Title" />
+                        <HBox fx:id="metaHbox" alignment="CENTER_LEFT" spacing="12" />
+                    </VBox>
+
+                    <Separator />
+
+                    <HBox spacing="20" style="-fx-background-color: transparent;">
+                        <ImageView fx:id="posterImageView" fitHeight="400" fitWidth="270" preserveRatio="true" style="-fx-effect: dropshadow(two-pass-box, rgba(0,0,0,0.7), 12, 0, 0, 6);" />
+
+                        <VBox spacing="12" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+      
+                            <FlowPane fx:id="genreFlow" hgap="8" prefWrapLength="420" style="-fx-background-color: transparent;" vgap="8">
+                                <Label style="-fx-background-color: #222; -fx-text-fill: #ccc; -fx-padding: 6 10; -fx-background-radius: 16;" text="Action" />
+                                <Label style="-fx-background-color: #222; -fx-text-fill: #ccc; -fx-padding: 6 10; -fx-background-radius: 16;" text="Sci-Fi" />
+                            </FlowPane>
+
+                            <VBox fx:id="infoVbox" spacing="6">
+                                <Label fx:id="directorLabel" style="-fx-text-fill: #888; -fx-font-size: 12;" text="Director: John Doe" />
+                                <Label fx:id="leadActorLabel" style="-fx-text-fill: #888; -fx-font-size: 12;" text="Lead Actor: Jane Doe" />
+                            </VBox>
+
+                            <HBox spacing="10">
+                                <Region HBox.hgrow="ALWAYS" />
+                            </HBox>
+
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
