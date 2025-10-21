@@ -2,7 +2,7 @@ package main.java.myApp.model;
 
 import java.time.LocalDate;
 
-abstract class Person {
+abstract class Person implements RepositoryRequirements {
   private int id;
   private String firstName;
   private String lastName;

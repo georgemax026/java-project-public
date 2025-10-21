@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User {
+public class User implements RepositoryRequirements {
   private int id;
   private String firstName;
   private String lastName;

@@ -3,7 +3,7 @@ package main.java.myApp.model;
 import java.util.ArrayList;
 import java.util.Map;
 
-public abstract class Media {
+public abstract class Media implements RepositoryRequirements {
   private int id;
   private final String title;
   private final Map<Integer, Integer> userRating;

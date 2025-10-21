@@ -3,7 +3,7 @@ package main.java.myApp.model;
 import java.time.Year;
 import java.util.Objects;
 
-public class Season {
+public class Season implements RepositoryRequirements {
   private int id;
   private final int seriesId;
   private final Year releaseYear;

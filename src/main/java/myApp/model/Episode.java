@@ -2,7 +2,7 @@ package main.java.myApp.model;
 
 import java.util.Objects;
 
-public class Episode {
+public class Episode implements RepositoryRequirements {
   private int id;
   private final int seasonId;
   private final int duration;
