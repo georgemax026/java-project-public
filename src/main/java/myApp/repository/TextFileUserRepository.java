@@ -2,68 +2,21 @@ package main.java.myApp.repository;
 
 import main.java.myApp.model.User;
 
-import java.io.*;
 import java.util.*;
 
-public class TextFileUserRepository implements UserRepository{
-    private final String filePath;
-    private int nextId;
-
+public class TextFileUserRepository extends TextFileRepository<User> implements UserRepository{
 
     public TextFileUserRepository(String filePath) {
-        this.filePath = filePath;
+        super(filePath);
         nextId = calculateNextId();
     }
 
 
-    /**
-     * calculates next available id
-     * @return next available id
-     */
-    private int calculateNextId() {
-        List<User> users = findAll();
-        return users.stream()
-                .mapToInt(User::getId)
-                .max()
-                .orElse(0) + 1;
-    }
-    private List<User> readAllLines() {
-        List<User> users = new ArrayList<>();
-
-        try (Scanner userScanner = new Scanner(new File(filePath))) {
-            while (userScanner.hasNextLine()) {
-                String line = userScanner.nextLine();
-                if (line.trim().isEmpty()) { // Skip empty lines
-                    continue;
-                }
-                try {
-                    users.add(parseUserFromLine(line));
-                } catch (IllegalArgumentException e) {
-                    System.err.println("malformed line in users file: " + line + " - Error: " + e.getMessage());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("user database file not found: " + filePath);
-        } catch (Exception e) {
-            System.err.println("Error reading users from file: " + e.getMessage());
-        }
-        return users;
-    }
-
-    private User parseUserFromLine(String line) {
+    @Override
+    protected User parseLine(String line) {
         String[] parts = line.split(",", 5);
         int id = Integer.parseInt(parts[0]);
         return new User(id, parts[1], parts[2], parts[3], parts[4]);
-    }
-
-    private void writeAllLinesToFile(List<User> users) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
-            for (User user : users) {
-                writer.print(user.toDbString());
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing users to file: " + e.getMessage());
-        }
     }
 
     // UserRepository interface implementation
@@ -87,12 +40,12 @@ public class TextFileUserRepository implements UserRepository{
         List<User> users = findAll();
         user.setId(nextId++);
         users.add(user);
-        writeAllLinesToFile(users);
+        writeAllLines(users);
     }
 
     @Override
     public void saveAll(List<User> user) {
-        writeAllLinesToFile(user);
+        writeAllLines(user);
     }
 
     @Override
@@ -102,7 +55,7 @@ public class TextFileUserRepository implements UserRepository{
                 .filter(user -> user.getId() != id)
                 .toList();
         if (users.size() > updatedUsers.size()) {
-            writeAllLinesToFile(updatedUsers);
+            writeAllLines(updatedUsers);
         } else {
             System.out.println("user with ID " + id + " not found. No deletion performed.");
         }

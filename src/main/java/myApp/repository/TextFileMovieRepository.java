@@ -3,58 +3,22 @@ package main.java.myApp.repository;
 import main.java.myApp.model.Genre;
 import main.java.myApp.model.Movie;
 
-import java.io.*;
 import java.time.Year;
 import java.util.*;
 
-public class TextFileMovieRepository implements MovieRepository{
-    private int nextId;
-    private final String filePath;
+public class TextFileMovieRepository extends TextFileRepository<Movie> implements MovieRepository {
 
     public TextFileMovieRepository(String filePath) {
-        this.filePath = filePath;
+        super(filePath);
         nextId = calculateNextId();
     }
-
-    /**
-     * calculates next available id
-     * @return next available id
-     */
-    private int calculateNextId() {
-        List<Movie> movies = findAll();
-        return movies.stream()
-                .mapToInt(Movie::getId)
-                .max()
-                .orElse(0) + 1;
-    }
-    private List<Movie> readAllLines() {
-        List<Movie> movies = new ArrayList<>();
-        try (Scanner movieScanner = new Scanner(new File(filePath))) {
-            while (movieScanner.hasNextLine()) {
-                String line = movieScanner.nextLine();
-                if (line.isBlank()) { // Skip empty lines
-                    continue;
-                }
-                try {
-                    movies.add(parseMovieFromLine(line));
-                } catch (IllegalArgumentException e) {
-                    System.err.println("malformed line in director file: " + line + " - Error: " + e.getMessage());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("Actor database file not found: " + filePath);
-        } catch (Exception e) {
-            System.err.println("Error reading users from file: " + e.getMessage());
-        }
-        return movies;
-    }
-
     /**
      * parses a singular line from the database
      * @param line a line from the movie db txt file
      * @return on object of type Movie made from the db info
      */
-    private Movie parseMovieFromLine(String line) {
+    @Override
+    protected Movie parseLine(String line) {
         String[] parts = line.split(",", 9);
         int id = Integer.parseInt(parts[0]);
         Year releaseYear = Year.of(Integer.parseInt(parts[2]));
@@ -74,21 +38,6 @@ public class TextFileMovieRepository implements MovieRepository{
             return new Movie(id, parts[1], releaseYear, Genre.fromDbString(parts[3]), length, parts[5], imdbRating, parts[7], userRating);
         }
     }
-
-    /**
-     * overwrites the db
-     * @param movies the list of movies that will overwrite the db
-     */
-    private void writeAllLines(List<Movie> movies) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
-            for (Movie movie : movies) {
-                writer.print(movie.toDbString());
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing movies to file: " + e.getMessage());
-        }
-    }
-
 
     // MovieRepository interface implementation
     @Override

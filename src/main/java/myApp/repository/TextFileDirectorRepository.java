@@ -4,79 +4,23 @@ package main.java.myApp.repository;
 import main.java.myApp.model.Director;
 import main.java.myApp.model.Gender;
 
-import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class TextFileDirectorRepository implements DirectorRepository {
-    private final String filePath;
-    private int nextId;
+public class TextFileDirectorRepository extends TextFileRepository<Director> implements DirectorRepository {
 
     public TextFileDirectorRepository(String filePath) {
-        this.filePath = filePath;
-        initializeDatabaseFile();
+        super(filePath);
         this.nextId = calculateNextId();
     }
 
-    private void initializeDatabaseFile() {
-    }
-    /**
-     * Calculates the next available ID
-     * the "nextId" is the id number after the last id
-     * @return the next available id
-     */
-    private int calculateNextId() {
-        List<Director> directors = findAll();
-        return directors.stream()
-                .mapToInt(Director::getId)
-                .max()
-                .orElse(0) + 1;
-    }
-    /**
-     * read all lines from the db
-     * @return the list of directors from the db
-     */
-    private List<Director> readAllLines() {
-        List<Director> directors = new ArrayList<>();
-
-        try (Scanner directorScanner = new Scanner(new File(filePath))) {
-            while (directorScanner.hasNextLine()) {
-                String line =  directorScanner.nextLine();
-                if (line.isBlank()) { // Skip empty lines
-                    continue;
-                }
-                try {
-                    directors.add(parseDirectorFromLine(line));
-                } catch (IllegalArgumentException e) {
-                    System.err.println("malformed line in director file: " + line + " - Error: " + e.getMessage());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("director database file not found: " + filePath);
-        } catch (Exception e) {
-            System.err.println("Error reading director from file: " + e.getMessage());
-        }
-        return directors;
-    }
-    /**
-     * Overwrites the txt file
-     * @param directors the list that's going to overwrite the db
-     */
-    private void writeAllLinesToFile(List<Director> directors) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
-            for (Director director : directors) {
-                writer.print(director.toDbString());
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing director to file: " + e.getMessage());
-        }
-    }
     /**
      * parses a single line from the db
      * @param line the line of the txt file to be parsed
      * @return returns the db line as a Director
      */
-    private Director parseDirectorFromLine(String line) {
+    @Override
+    protected Director parseLine(String line) {
         String[] parts = line.split(",", 6);
         if (parts.length < 6) {
             throw new IllegalArgumentException("Invalid Director data format: " + line);
@@ -113,7 +57,7 @@ public class TextFileDirectorRepository implements DirectorRepository {
     @Override
     public void saveAll(List<Director> directors) {
         List<Director> directorsToSave = new ArrayList<>();
-        writeAllLinesToFile(directors);
+        writeAllLines(directors);
     }
 
     @Override
@@ -121,7 +65,7 @@ public class TextFileDirectorRepository implements DirectorRepository {
         List<Director> directors = readAllLines();
         director.setId(nextId++);
         directors.add(director);
-        writeAllLinesToFile(directors);
+        writeAllLines(directors);
     }
 
     @Override
@@ -131,7 +75,7 @@ public class TextFileDirectorRepository implements DirectorRepository {
                 .filter(director -> director.getId() != id)
                 .toList();
         if (directors.size() > updatedDirectors.size()) {
-            writeAllLinesToFile(updatedDirectors);
+            writeAllLines(updatedDirectors);
         } else {
             System.out.println("director with ID " + id + " not found. No deletion performed.");
         }

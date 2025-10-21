@@ -3,58 +3,23 @@ package main.java.myApp.repository;
 import main.java.myApp.model.Genre;
 import main.java.myApp.model.Series;
 
-import java.io.*;
 import java.util.*;
 
-public class TextFileSeriesRepository implements SeriesRepository {
-    private int nextId;
-    private final String filePath;
+public class TextFileSeriesRepository extends TextFileRepository<Series> implements SeriesRepository {
 
     public TextFileSeriesRepository(String filePath) {
-        this.filePath = filePath;
+        super(filePath);
         nextId = calculateNextId();
     }
 
-
-    /**
-     * calculates next available id
-     * @return next available id
-     */
-    private int calculateNextId() {
-        List<Series> series = findAll();
-        return series.stream()
-                .mapToInt(Series::getId)
-                .max()
-                .orElse(0) + 1;
-    }
-    private List<Series> readAllLines() {
-        List<Series> series = new ArrayList<>();
-        try (Scanner seriesScanner = new Scanner(new File(filePath))) {
-            while (seriesScanner.hasNextLine()) {
-                String line = seriesScanner.nextLine();
-                if (line.isBlank()) { // Skip empty lines
-                    continue;
-                }
-                try {
-                    series.add(parseSeriesFromLine(line));
-                } catch (IllegalArgumentException e) {
-                    System.err.println("malformed line in series file: " + line + " - Error: " + e.getMessage());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("series database file not found: " + filePath);
-        } catch (Exception e) {
-            System.err.println("Error reading series from file: " + e.getMessage());
-        }
-        return series;
-    }
 
     /**
      * parses a singular line from the database
      * @param line a line from the series db txt file
      * @return on object of type Series made from the db info
      */
-    private Series parseSeriesFromLine(String line) {
+    @Override
+    protected Series parseLine(String line) {
         String[] parts = line.split(",", 4);
         int id = Integer.parseInt(parts[0]);
         // check if series has user ratings
@@ -71,20 +36,6 @@ public class TextFileSeriesRepository implements SeriesRepository {
             return new Series(id, parts[1], Genre.fromDbString(parts[2]), userRating);
         }
     }
-    /**
-     * overwrites the db
-     * @param seriesList the list of series that will overwrite the db
-     */
-    private void writeAllLinesToFile(List<Series> seriesList) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
-            for (Series series : seriesList) {
-                writer.print(series.toDbString());
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing series to file: " + e.getMessage());
-        }
-    }
-
 
     // SeriesRepository interface implementation
     @Override
@@ -107,7 +58,7 @@ public class TextFileSeriesRepository implements SeriesRepository {
         List<Series> seriesList = findAll();
         series.setId(nextId++);
         seriesList.add(series);
-        writeAllLinesToFile(seriesList);
+        writeAllLines(seriesList);
     }
 
     @Override
@@ -121,7 +72,7 @@ public class TextFileSeriesRepository implements SeriesRepository {
         } else {
             throw new IllegalArgumentException("Series with id: " + seriesId + " not found");
         }
-        writeAllLinesToFile(seriesList);
+        writeAllLines(seriesList);
     }
     @Override
     public boolean existsByTitle(String title) {

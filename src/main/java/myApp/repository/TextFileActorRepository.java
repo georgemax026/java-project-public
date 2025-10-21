@@ -4,74 +4,16 @@ import main.java.myApp.model.Actor;
 import main.java.myApp.model.Gender;
 import main.java.myApp.model.Race;
 
-import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
-public class TextFileActorRepository implements ActorRepository {
-    private final String filePath;
-    private int nextId;
+public class TextFileActorRepository extends TextFileRepository<Actor> implements ActorRepository {
 
 
     public TextFileActorRepository(String filePath) {
-        this.filePath = filePath;
+        super(filePath);
         this.nextId = calculateNextId();
-    }
-
-    /**
-     * Calculates the next available ID
-     * the "nextId" is the id number after the last id
-     * @return the next available id
-     */
-    private int calculateNextId() {
-        List<Actor> actors = findAll();
-        return actors.stream()
-                .mapToInt(Actor::getId)
-                .max()
-                .orElse(0) + 1;
-    }
-
-    /**
-     * read all lines from the db
-     * @return the list of actors from the db
-     */
-    private List<Actor> readAllLines() {
-        List<Actor> actors = new ArrayList<>();
-        try (Scanner actorScanner = new Scanner(new File(filePath))) {
-            while (actorScanner.hasNextLine()) {
-                String line = actorScanner.nextLine();
-                if (line.isBlank()) { // Skip empty lines
-                    continue;
-                }
-                try {
-                    actors.add(parseActorFromLine(line));
-                } catch (IllegalArgumentException e) {
-                    System.err.println("malformed line in actors file: " + line + " - Error: " + e.getMessage());
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("Actor database file not found: " + filePath);
-        } catch (Exception e) {
-            System.err.println("Error reading actors from file: " + e.getMessage());
-        }
-        return actors;
-    }
-
-    /**
-     * Overwrites the txt file
-     * @param actors the list that's going to overwrite the db
-     */
-    private void writeAllLinesToFile(List<Actor> actors) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
-            for (Actor actor : actors) {
-                writer.print(actor.toDbString());
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing actors to file: " + e.getMessage());
-        }
     }
 
     /**
@@ -79,7 +21,8 @@ public class TextFileActorRepository implements ActorRepository {
      * @param line the line of the txt file to be parsed
      * @return returns the db line as an Actor
      */
-    private Actor parseActorFromLine(String line) {
+    @Override
+    protected Actor parseLine(String line) {
         String[] parts = line.split(",", 6);
         if (parts.length < 6) {
             throw new IllegalArgumentException("Invalid actor data format: " + line);
@@ -91,7 +34,6 @@ public class TextFileActorRepository implements ActorRepository {
         return new Actor(id, parts[1], parts[2], birthDate, Gender.fromDbString(parts[4]), Race.fromDbString(parts[5]));
     }
 
-    // ActorRepository Interface Implementations
     @Override
     public List<Actor> findAll() {
         return readAllLines();
@@ -114,12 +56,12 @@ public class TextFileActorRepository implements ActorRepository {
         List<Actor> actors = findAll();
         actor.setId(nextId++);
         actors.add(actor);
-        writeAllLinesToFile(actors);
+        writeAllLines(actors);
     }
 
     @Override
     public void saveAll(List<Actor> actors) {
-        writeAllLinesToFile(actors);
+        writeAllLines(actors);
     }
 
 
@@ -130,7 +72,7 @@ public class TextFileActorRepository implements ActorRepository {
                 .filter(actor -> actor.getId() != id)
                 .toList();
         if (updatedActors.size() < actors.size()) {
-            writeAllLinesToFile(updatedActors);
+            writeAllLines(updatedActors);
         } else {
             System.out.println("Actor with ID " + id + " not found. No deletion performed.");
         }
