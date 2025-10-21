@@ -223,7 +223,7 @@ public class MovieDetailsController {
             posterImageView.setImage(new Image(getClass().getResourceAsStream(posterPath)));
             posterImageView.setCache(false);
         } catch (Exception e) {
-            posterImageView.setImage(null);
+            posterImageView.setImage(new Image(getClass().getResourceAsStream("/main/resources/images/movies/posterNotFound.jpg")));
         }
     }
 }

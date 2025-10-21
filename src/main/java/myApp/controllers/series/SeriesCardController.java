@@ -26,7 +26,13 @@ public class SeriesCardController {
             ));
             poster.setCache(false);
         } catch (Exception e) {
-            poster.setImage(null);
+            poster.setImage(new Image(
+                    getClass().getResourceAsStream("/main/resources/images/series/posterNotFound.jpg"),
+                    160, 240,
+                    true,
+                    true
+            ));
+            poster.setCache(false);
         }
         title.setText(series.getTitle());
         if (series.getUserRating().isEmpty()) {

@@ -28,7 +28,13 @@ public class MovieCardController {
 
             poster.setCache(false);
         } catch (Exception e) {
-            poster.setImage(null);
+            poster.setImage(new Image(
+                    getClass().getResourceAsStream("/main/resources/images/movies/posterNotFound.jpg"),
+                    160, 240,
+                    true,
+                    true
+            ));
+            poster.setCache(false);
         }
         title.setText(movie.getTitle());
         imdbRating.setText("IMDb: " + movie.getImdbRating());
