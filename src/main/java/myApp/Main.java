@@ -79,13 +79,13 @@ public class Main extends Application {
     @Override
     public void init() {
         // make the repositories and the services on init()
-        MovieRepository movieRepository = new TextFileMovieRepository("./data/movies.txt");
-        DirectorRepository directorRepository = new TextFileDirectorRepository("./data/directors.txt");
-        ActorRepository actorRepository = new TextFileActorRepository("./data/actors.txt");
-        SeriesRepository seriesRepository = new TextFileSeriesRepository("./data/series.txt");
-        SeasonRepository seasonRepository = new TextFileSeasonRepository("./data/seasons.txt");
-        EpisodeRepository episodeRepository = new TextFileEpisodeRepository("./data/episodes.txt");
-        UserRepository userRepository = new TextFileUserRepository("./data/users.txt");
+        MovieRepository movieRepository = new TextFileMovieRepository("src/main/resources/data/movies.txt");
+        DirectorRepository directorRepository = new TextFileDirectorRepository("src/main/resources/data/directors.txt");
+        ActorRepository actorRepository = new TextFileActorRepository("src/main/resources/data/actors.txt");
+        SeriesRepository seriesRepository = new TextFileSeriesRepository("src/main/resources/data/series.txt");
+        SeasonRepository seasonRepository = new TextFileSeasonRepository("src/main/resources/data/seasons.txt");
+        EpisodeRepository episodeRepository = new TextFileEpisodeRepository("src/main/resources/data/episodes.txt");
+        UserRepository userRepository = new TextFileUserRepository("src/main/resources/data/users.txt");
         this.searchService = new SearchService(actorRepository, directorRepository, movieRepository, seriesRepository, seasonRepository, episodeRepository);
         this.seriesService = new SeriesService(seriesRepository, seasonRepository, episodeRepository);
         this.actorService = new ActorService(actorRepository);
